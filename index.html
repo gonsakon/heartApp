@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>情緒App</title>
+    
+    <!-- 基本favicon -->
+    <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+CiAgPCEtLSDnmbzngrnngrrlj4LlvaLluqYgLS0+CiAgPHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiByeD0iNCIgcnk9IjQiIGZpbGw9IiNGRjhBNjUiIC8+CiAgCiAgPCEtLSDlpJbpg6jlhYPmvbo+CiAgPGNpcmNsZSBjeD0iMTYiIGN5PSIxNiIgcj0iMTIiIGZpbGw9InVybCgjZ2xvdykiIC8+CiAgCiAgPCEtLSDniLHlv4PnrKblkI0gLS0+CiAgPHBhdGggZD0iTTE2LDkgQzE0LjU1LDcuNTUgMTIuNzQsNyAxMS40Miw3IEM4LjU2LDcgNiw5LjU2IDYsMTIuNDIgQzYsMTYuMDUgOS4wNCwxOC45MSAxNC4xLDIzLjU5IEwxNiwyNS4zNSBMMTcuOSwyMy41OSBDMjIuOTYsMTguOTEgMjYsMTYuMDUgMjYsMTIuNDIgQzI2LDkuNTYgMjMuNDQsNyAyMC41OCw3IEMxOS4yNiw3IDE3LjQ1LDcuNTUgMTYsOSBaIiAKICAgICAgICBmaWxsPSIjRkZGRkZGIiAKICAgICAgICBzdHJva2U9IiNGRjNEMDAiIAogICAgICAgIHN0cm9rZS13aWR0aD0iMS41IiAvPgogIAogIDwhLS0g5rix5bqm5a6a576pIC0tPgogIDxkZWZzPgogICAgPHJhZGlhbEdyYWRpZW50IGlkPSJnbG93IiBjeD0iMTYiIGN5PSIxNiIgcj0iMTIiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI0ZGRUNCMyIgc3RvcC1vcGFjaXR5PSIwLjciIC8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI0ZGOEw2NSIgc3RvcC1vcGFjaXR5PSIwIiAvPgogICAgPC9yYWRpYWxHcmFkaWVudD4KICA8L2RlZnM+Cjwvc3ZnPg==">
+    
+    <!-- iOS專用的圖標設定 -->
+    <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+CiAgPCEtLSDnmbzngrnngrrlj4LlvaLluqYgLS0+CiAgPHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiByeD0iNCIgcnk9IjQiIGZpbGw9IiNGRjhBNjUiIC8+CiAgCiAgPCEtLSDlpJbpg6jlhYPmvbo+CiAgPGNpcmNsZSBjeD0iMTYiIGN5PSIxNiIgcj0iMTIiIGZpbGw9InVybCgjZ2xvdykiIC8+CiAgCiAgPCEtLSDniLHlv4PnrKblkI0gLS0+CiAgPHBhdGggZD0iTTE2LDkgQzE0LjU1LDcuNTUgMTIuNzQsNyAxMS40Miw3IEM4LjU2LDcgNiw5LjU2IDYsMTIuNDIgQzYsMTYuMDUgOS4wNCwxOC45MSAxNC4xLDIzLjU5IEwxNiwyNS4zNSBMMTcuOSwyMy41OSBDMjIuOTYsMTguOTEgMjYsMTYuMDUgMjYsMTIuNDIgQzI2LDkuNTYgMjMuNDQsNyAyMC41OCw3IEMxOS4yNiw3IDE3LjQ1LDcuNTUgMTYsOSBaIiAKICAgICAgICBmaWxsPSIjRkZGRkZGIiAKICAgICAgICBzdHJva2U9IiNGRjNEMDAiIAogICAgICAgIHN0cm9rZS13aWR0aD0iMS41IiAvPgogIAogIDwhLS0g5rix5bqm5a6a576pIC0tPgogIDxkZWZzPgogICAgPHJhZGlhbEdyYWRpZW50IGlkPSJnbG93IiBjeD0iMTYiIGN5PSIxNiIgcj0iMTIiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI0ZGRUNCMyIgc3RvcC1vcGFjaXR5PSIwLjciIC8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI0ZGOEw2NSIgc3RvcC1vcGFjaXR5PSIwIiAvPgogICAgPC9yYWRpYWxHcmFkaWVudD4KICA8L2RlZnM+Cjwvc3ZnPg==">
+    
+    <!-- iOS Web App設定 -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="情緒App">
+    
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #FFF8E1;
+            color: #333;
+            text-align: center;
+        }
+        
+        .container {
+            max-width: 90%;
+            padding: 20px;
+        }
+        
+        .logo {
+            width: 120px;
+            height: 120px;
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            color: #FF5722;
+            margin-bottom: 10px;
+        }
+        
+        p {
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .instructions {
+            background-color: #FFFFFF;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: left;
+            max-width: 500px;
+        }
+        
+        .instructions h2 {
+            color: #FF8A65;
+            margin-top: 0;
+        }
+        
+        .instructions ol {
+            padding-left: 20px;
+        }
+        
+        .instructions li {
+            margin-bottom: 10px;
+        }
+        
+        @media (max-width: 600px) {
+            .logo {
+                width: 80px;
+                height: 80px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- SVG Logo -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="logo">
+          <rect width="32" height="32" rx="4" ry="4" fill="#FF8A65" />
+          <circle cx="16" cy="16" r="12" fill="url(#glow)" />
+          <path d="M16,9 C14.55,7.55 12.74,7 11.42,7 C8.56,7 6,9.56 6,12.42 C6,16.05 9.04,18.91 14.1,23.59 L16,25.35 L17.9,23.59 C22.96,18.91 26,16.05 26,12.42 C26,9.56 23.44,7 20.58,7 C19.26,7 17.45,7.55 16,9 Z" 
+                fill="#FFFFFF" 
+                stroke="#FF3D00" 
+                stroke-width="1.5" />
+          <defs>
+            <radialGradient id="glow" cx="16" cy="16" r="12" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#FFECB3" stop-opacity="0.7" />
+              <stop offset="100%" stop-color="#FF8A65" stop-opacity="0" />
+            </radialGradient>
+          </defs>
+        </svg>
+        
+        <h1>情緒App</h1>
+        <p>歡迎使用情緒管理應用。這個應用能幫助您記錄、追蹤並理解您的情緒變化。</p>
+        
+        <div class="instructions">
+            <h2>如何將此頁面加到主畫面</h2>
+            <ol>
+                <li>在Safari中，點擊底部的「分享」按鈕 (箭頭向上的方框圖示)</li>
+                <li>向下滑動並選擇「加入主畫面」選項</li>
+                <li>確認名稱，然後點擊「加入」</li>
+                <li>現在您可以從主畫面直接開啟此應用</li>
+            </ol>
+        </div>
+    </div>
+</body>
+</html>
